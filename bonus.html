@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>БОНУС — У Сашика</title>
+  <!-- Подключаем общие стили сайта, чтобы вернуть фон с дымом -->
+  <link rel="stylesheet" href="./CSS/main.css">  
+  <style>
+    /* Уникальные стили для уменьшенной гифки */
+    .bonus-container {
+        text-align: center;
+    }
+    
+    /* Задаем аккуратный средний размер для гифки */
+    .bonus-gif {
+        display: block;
+        max-width: 100%;
+        width: 450px; /* Фиксированная комфортная ширина */
+        height: auto;
+        border-radius: 12px;
+        margin: 20px auto 30px auto;
+        box-shadow: 0 8px 30px rgba(229, 57, 53, 0.3); /* Красивое красноватое свечение */
+        border: 1px solid rgba(229, 57, 53, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <div class="bonus-container">
+        <h1>Ваш Бонус! 🎁</h1>
+        
+        <!-- Уменьшенная аккуратная гифка -->
+        <img src="./Pictures/dasdanc.gif" alt="Бонусная анимация" class="bonus-gif">
+        
+        <p>Спасибо, что выбираете наше заведение! Специально для вас — эксклюзивный дымный заряд отличного настроения.</p>
+        
+        <!-- Кнопка возврата на главную -->
+        <div class="buttons-container" style="justify-content: center; margin-top: 25px;">
+            <a href="./index.html" class="btn-bonus">Назад на главную</a>
+        </div>
+    </div>
+  </main>
+
+</body>
+</html>

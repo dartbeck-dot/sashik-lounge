@@ -1,0 +1,276 @@
+/* 1. Сброс базовых отступов и настройка шрифта */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 2. Общие стили для всей страницы */
+body {
+    /* Добавлен резервный темный цвет на случай, если картинка не прогрузится */
+    background: #121212 url('../Pictures/dimit.jpg') no-repeat center center fixed; 
+    background-size: cover;       
+    color: #e0e0e0;            
+    line-height: 1.6;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;    
+    align-items: center;       
+}   
+
+/* Главный блок сайта — теперь он гарантированно заработает и вернет темную подложку */
+main {
+    display: block !important;    
+    max-width: 800px !important;  
+    width: 100% !important;
+    
+    /* Плотный темно-серый лаунж-фон, чтобы белый текст идеально читался поверх дыма */
+    background-color: #1e1e1e !important; 
+    background: rgba(30, 30, 30, 0.93) !important; 
+    backdrop-filter: blur(8px); 
+    
+    padding: 40px !important;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    
+    /* Сдвигаем контент чуть влево, чтобы освободить место для календаря на ПК */
+    margin-right: 280px; 
+    box-sizing: border-box;
+}
+
+/* 3. Стилизация заголовков */
+h1 {
+    color: #ffb74d;            
+    font-size: 2.3rem;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2, h3, h4 {
+    color: #ffa726;            
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444; 
+    padding-bottom: 8px;
+}
+
+/* 4. Работа с текстом и списками */
+p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #b0bec5;            
+}
+
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 25px;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+ul li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+ul li::before {
+    content: "•";
+    color: #ffa726;            
+    font-weight: bold;
+    font-size: 1.3rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* 5. Картинки */
+img.main-img, 
+img.content-media {
+    display: block;
+    max-width: 100%;           
+    height: auto;              
+    border-radius: 12px;       
+    margin: 25px auto;         
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6); 
+}
+
+img.content-media {
+    max-width: 90%;
+    opacity: 0.9;              
+}
+
+/* Ссылки */
+a {
+    color: #64b5f6;            
+    text-decoration: none;     
+    font-weight: 600;
+}
+
+main > a {
+    display: inline-block;
+    margin-top: 30px;
+    background-color: #ffa726;
+    color: #121212;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* 6. СОЦСЕТИ */
+.social-icons {
+    display: inline-flex;
+    gap: 15px;           
+    margin-left: 10px;   
+    vertical-align: middle;
+}
+
+.social-icons a { display: inline-block; }
+
+.social-icons img {
+    width: 30px;         
+    height: 30px;        
+    margin: 0 !important;
+    box-shadow: none !important; 
+}
+
+/* =================================================== */
+/* 7. ФИКСИРОВАННЫЙ КАЛЕНДАРЬ И ЕГО ЖЕСТКАЯ СЕТКА      */
+/* =================================================== */
+
+.calendar-widget {
+    position: fixed !important; /* Намертво прижимаем к экрану, а не к сайту */
+    top: 25px !important;       /* Отступ сверху экрана */
+    right: 25px !important;     /* Отступ справа экрана */
+    background: #1e1e1e !important;
+    border: 1px solid #ffb74d !important;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+    width: 240px !important; 
+    box-sizing: border-box !important;
+    z-index: 9999 !important;   /* Поверх абсолютно всех элементов на сайте */
+}
+
+.calendar-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-weight: bold;
+    color: #ffa726;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.calendar-btn {
+    background: none !important;
+    border: none !important;
+    color: #ffb74d !important;
+    font-size: 1.1rem !important;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.calendar-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important; 
+    gap: 6px !important;
+    text-align: center;
+}
+
+.calendar-day-name {
+    color: #ffb74d;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.calendar-day {
+    font-size: 0.85rem;
+    padding: 4px 0;
+    color: #e0e0e0;
+}
+
+.calendar-day.empty {
+    visibility: hidden;
+}
+
+.calendar-day.today {
+    background-color: #ffa726 !important;
+    color: #121212 !important;
+    border-radius: 50% !important;
+    font-weight: bold;
+}
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: flex-start; /* Выравнивание по левому краю внутри main */
+}
+
+/* Общий стиль для обеих кнопок */
+.btn-main, .btn-bonus {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Стиль для кнопки истории (оставляем оранжевой) */
+.btn-main {
+    background-color: #ffa726;
+    color: #121212 !important;
+}
+
+.btn-main:hover {
+    background-color: #ffb74d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 167, 38, 0.4);
+}
+
+/* Стиль для кнопки БОНУС (делаем её дерзкой неоново-красной/рубиновой) */
+.btn-bonus {
+    background-color: #e53935; /* Красный цвет */
+    color: #ffffff !important;
+    border: 1px solid #ef5350;
+}
+
+.btn-bonus:hover {
+    background-color: #f44336;
+    transform: translateY(-2px);
+    /* Эффект яркого неонового свечения вокруг бонуса */
+    box-shadow: 0 6px 25px rgba(229, 57, 53, 0.6); 
+}
+
+/* На мобильных экранах ставим кнопки друг под другом, чтобы всё влезло */
+@media (max-width: 950px) {
+    /* На телефонах отменяем сдвиг вправо, чтобы сайт занял всю ширину экрана */
+    main {
+        margin-right: 0 !important;
+        padding: 20px !important;
+    }
+    
+    /* Переносим кнопки в вертикальный список, чтобы они не вылезали за края экрана */
+    .buttons-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* Отключаем фиксацию календаря в углу на смартфонах, чтобы он не перекрывал текст, */
+    /* и аккуратно ставим его над основным контентом */
+    .calendar-widget {
+        position: static !important;
+        margin: 0 auto 20px auto !important;
+        width: 100% !important;
+        max-width: 240px !important;
+    }
+}
